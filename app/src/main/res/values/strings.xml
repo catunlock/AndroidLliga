@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Campionat LLiga</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_equips">Equips</string>
+    <string name="action_add">Afegir Equip</string>
+    <string name="title_activity_afegir_equip">Afegir Equip</string>
+    <string name="action_save">Desa</string>
+    <string name="title_activity_equip">Equip</string>
+    <string name="title_activity_anadir_partido">AnadirPartido</string>
+    <string name="action_calendar">Selecciona Data</string>
+    <string name="title_activity_jornada">Jornada</string>
+    <string name="title_activity_jornadas">Jornadas</string>
+    <string name="title_activity_afegir_jornada">AfegirJornada</string>
+    <string name="title_activity_classificacio">Classificacio</string>
+    <string name="title_activity_jugadors">Jugadors</string>
+    <string name="title_activity_equip_viewer">EquipViewer</string>
+    <string name="action_edit">Edit</string>
+    <string name="title_activity_gallery">Gallery</string>
+    <string name="action_delete">Esborrar</string>
+    <string name="confirm_delete">Esta segur que ho vol eliminar?</string>
+    <string name="esborra">Esborra</string>
+    <string name="cancel">Cancela</string>
+</resources>

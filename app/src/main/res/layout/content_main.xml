@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.sanchez.lopez.alberto.campionatlliga.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clasificacio"
+        android:id="@+id/bntClasificacio"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="openClassificacio" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Equips"
+        android:id="@+id/btnEquips"
+        android:layout_below="@+id/bntClasificacio"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/bntClasificacio"
+        android:onClick="openEquipsActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jornades"
+        android:id="@+id/btnJornades"
+        android:layout_below="@+id/btnEquips"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/btnEquips"
+        android:onClick="openAfegirJornadaActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugadors"
+        android:id="@+id/button"
+        android:layout_below="@+id/btnJornades"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/btnJornades"
+        android:onClick="openJugadorsActivity" />
+</RelativeLayout>

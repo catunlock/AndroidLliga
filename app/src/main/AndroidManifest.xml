@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sanchez.lopez.alberto.campionatlliga">
+
+    <application
+        android:name="com.orm.SugarApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="DATABASE"
+            android:value="a.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="41" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.sanchez.lopez.alberto.campionatlliga.model" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Equips"
+            android:label="@string/title_activity_equips"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AfegirEquip"
+            android:label="@string/title_activity_afegir_equip"
+            android:parentActivityName=".Equips"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AnadirPartido"
+            android:label="@string/title_activity_anadir_partido"
+            android:parentActivityName=".visualizadoras.JornadaActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".visualizadoras.JornadaActivity"
+            android:label="@string/title_activity_jornada"
+            android:parentActivityName=".Jornadas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Jornadas"
+            android:label="@string/title_activity_jornadas"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AfegirJornada"
+            android:label="@string/title_activity_afegir_jornada"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Classificacio"
+            android:label="@string/title_activity_classificacio"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Jugadors"
+            android:label="@string/title_activity_jugadors"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".visualizadoras.EquipViewer"
+            android:label="@string/title_activity_equip_viewer"
+            android:parentActivityName=".Equips"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GalleryActivity"
+            android:label="@string/title_activity_gallery"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>
