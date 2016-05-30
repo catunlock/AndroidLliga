@@ -84,6 +84,7 @@ public class AnadirPartido extends AppCompatActivity {
     private boolean equipsIguals;
 
     Context context;
+    private boolean tancarActivitat = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,14 +287,17 @@ public class AnadirPartido extends AppCompatActivity {
         }
 
         if (id == R.id.action_save) {
+            if (equipsIguals) {
+                Snackbar.make(findViewById(android.R.id.content), "Has de seleccionar equips diferents", Snackbar.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Has de seleccionar equips diferents.",Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
             if (date != null) {
-                if (equipsIguals) {
-                    Snackbar.make(findViewById(android.R.id.content),"Has de seleccionar equips diferents", Snackbar.LENGTH_SHORT).show();
-                    //Toast.makeText(this,"Has de seleccionar equips diferents.",Toast.LENGTH_SHORT).show();
-                }else {
-                    guardarPartit(true);
-                }
+                guardarPartit();
+                tancaActivitat();
             }else {
+                tancarActivitat = true;
                 dialogData.show();
             }
 
@@ -567,8 +571,19 @@ public class AnadirPartido extends AppCompatActivity {
 
             date = new Date(cal.getTimeInMillis());
             setTitle(getStringDate(date));
+
+            if (tancarActivitat) {
+                guardarPartit();
+                tancaActivitat();
+            }
         }
     };
+
+    private void tancaActivitat() {
+        Intent intentTanca = new Intent(context, JornadaActivity.class);
+        intentTanca.putExtra("numJornada", numJornada);
+        startActivity(intentTanca);
+    }
 
     private void createAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -592,7 +607,7 @@ public class AnadirPartido extends AppCompatActivity {
         dialogData = builder.create();
     }
 
-    private void guardarPartit(boolean tanca) {
+    private void guardarPartit() {
         Jornada j = realm.where(Jornada.class).equalTo("numJornada", numJornada).findFirst();
 
         realm.beginTransaction();
@@ -644,12 +659,5 @@ public class AnadirPartido extends AppCompatActivity {
 
         j.getPartidos().add(p);
         realm.commitTransaction();
-
-        if (tanca) {
-            Intent intentTanca = new Intent(this, JornadaActivity.class);
-            intentTanca.putExtra("numJornada", numJornada);
-            startActivity(intentTanca);
-        }
-
     }
 }

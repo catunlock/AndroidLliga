@@ -180,7 +180,6 @@ public class JornadaActivity extends AppCompatActivity {
                 locked = true;
                 item.setIcon(R.drawable.ic_lock_open_white_48dp);
                 btnCalendar.setImageResource(R.drawable.ic_today_white_48dp);
-                updateDataBase();
                 updateLockableElements();
             }
             return true;
@@ -318,6 +317,8 @@ public class JornadaActivity extends AppCompatActivity {
 
             date = new Date(cal.getTimeInMillis());
             lblData.setText(getStringDate(date));
+
+            updateDataBase();
         }
     };
 

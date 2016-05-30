@@ -21,23 +21,23 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="96dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right" >
+                android:layout_height="60dp"
+                android:layout_gravity="right"
+                android:weightSum="1">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
                     android:text="Nom Equip"
                     android:id="@+id/lblCasaNom"
-                    android:layout_marginTop="15dp"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:layout_weight="1.02" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gols"
-                    android:id="@+id/lblCasaGols"
-                    android:layout_marginTop="15dp" />
+                    android:id="@+id/lblCasaGols" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,27 +81,28 @@
             android:layout_weight="0.64"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/linearLayout2"
+            android:layout_alignBottom="@+id/linearLayout">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="117dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="1">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="105dp"
+                    android:layout_height="20dp"
                     android:text="Nom Equip"
                     android:id="@+id/lblForaNom"
-                    android:layout_marginTop="15dp"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="right"
+                    android:layout_weight="0.79" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gols"
                     android:id="@+id/lblForaGols"
-                    android:layout_marginTop="15dp"
                     android:layout_gravity="right" />
             </LinearLayout>
         </LinearLayout>
