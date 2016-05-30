@@ -21,4 +21,6 @@
     <string name="esborra">Esborra</string>
     <string name="cancel">Cancela</string>
     <string name="title_activity_about">About</string>
+    <string name="title_activity_ajuda">Ajuda</string>
+    <string name="action_ajuda">Ajuda</string>
 </resources>

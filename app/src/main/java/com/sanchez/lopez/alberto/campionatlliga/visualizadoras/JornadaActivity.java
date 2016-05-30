@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sanchez.lopez.alberto.campionatlliga.AjudaActivity;
 import com.sanchez.lopez.alberto.campionatlliga.AnadirPartido;
 import com.sanchez.lopez.alberto.campionatlliga.Jornadas;
 import com.sanchez.lopez.alberto.campionatlliga.dialogs.DatePickerFragment;
@@ -166,8 +167,10 @@ public class JornadaActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_ajuda) {
+            Intent intent = new Intent(this, AjudaActivity.class);
+            intent.putExtra("ajudaId", R.raw.jornada2);
+            startActivity(intent);
         }
 
         if (id == R.id.action_unlock) {

@@ -1,17 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.sanchez.lopez.alberto.campionatlliga.AfegirJornada">
+    tools:context="com.sanchez.lopez.alberto.campionatlliga.Equips">
     <item
         android:id="@+id/action_ajuda"
         android:orderInCategory="100"
         android:title="@string/action_ajuda"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_save"
-        android:icon="@drawable/ic_save"
-        android:title="@string/action_save"
-        app:showAsAction="ifRoom" />
 
 </menu>

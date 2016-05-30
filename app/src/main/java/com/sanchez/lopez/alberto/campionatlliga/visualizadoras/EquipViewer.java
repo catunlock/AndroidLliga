@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.AfegirEquip;
+import com.sanchez.lopez.alberto.campionatlliga.AjudaActivity;
 import com.sanchez.lopez.alberto.campionatlliga.R;
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jugador;
@@ -93,8 +94,10 @@ public class EquipViewer extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_ajuda) {
+            Intent intent = new Intent(this, AjudaActivity.class);
+            intent.putExtra("ajudaId", R.raw.equip);
+            startActivity(intent);
         }
 
         if (id == R.id.action_edit) {
