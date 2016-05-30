@@ -29,8 +29,7 @@ public class AfegirJornada extends AppCompatActivity {
 
     private DatePicker datePicker;
     private TextView lblNumJornada;
-    private Button btnBack;
-    private Button btnFoward;
+    private int maxNumJornada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,31 +41,17 @@ public class AfegirJornada extends AppCompatActivity {
 
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         lblNumJornada = (TextView) findViewById(R.id.lblNumJornada);
-        btnBack = (Button) findViewById(R.id.btnBack);
-        btnFoward = (Button) findViewById(R.id.btnFoward);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int numJornada = Integer.parseInt(lblNumJornada.getText().toString());
-                if (numJornada > 1) {
-                    lblNumJornada.setText(String.valueOf(numJornada-1));
-                }
-
-            }
-        });
-
-        btnFoward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int numJornada = Integer.parseInt(lblNumJornada.getText().toString());
-                lblNumJornada.setText(String.valueOf(numJornada+1));
-            }
-        });
 
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
         realm = Realm.getInstance(realmConfig);
+
+        findMaxNumJornada();
+    }
+
+    private void findMaxNumJornada() {
+        maxNumJornada = realm.where(Jornada.class).max("numJornada").intValue();
+        lblNumJornada.setText(String.valueOf(maxNumJornada+1));
     }
 
     @Override

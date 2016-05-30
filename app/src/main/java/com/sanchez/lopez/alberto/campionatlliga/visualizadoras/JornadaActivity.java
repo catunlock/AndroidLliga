@@ -56,7 +56,7 @@ public class JornadaActivity extends AppCompatActivity {
 
     private ListView listPartit;
     private TextView lblData;
-    private EditText txtNum;
+    private TextView lblNum;
     private TextView lblNumPartits;
     private ImageButton btnCalendar;
 
@@ -98,7 +98,7 @@ public class JornadaActivity extends AppCompatActivity {
 
         listPartit = (ListView) findViewById(R.id.listPartits);
         lblData = (TextView) findViewById(R.id.lblData);
-        txtNum = (EditText) findViewById(R.id.txtNum);
+        lblNum = (TextView) findViewById(R.id.lblNum);
         btnCalendar = (ImageButton) findViewById(R.id.btnCalendar);
         btnCalendar.setEnabled(false);
         lblNumPartits = (TextView) findViewById(R.id.lblNumPartits);
@@ -141,7 +141,7 @@ public class JornadaActivity extends AppCompatActivity {
             jornada = realm.where(Jornada.class).equalTo("numJornada", numJornada).findFirst();
 
             lblData.setText(getStringDate(jornada.getData()));
-            txtNum.setText(String.valueOf(numJornada));
+            lblNum.setText(String.valueOf(numJornada));
 
             setTitle("Jornada " + String.valueOf(numJornada));
 
@@ -224,7 +224,6 @@ public class JornadaActivity extends AppCompatActivity {
     }
 
     private void updateLockableElements() {
-        txtNum.setEnabled(!locked);
         btnCalendar.setEnabled(!locked);
     }
 
@@ -232,7 +231,6 @@ public class JornadaActivity extends AppCompatActivity {
         realm.beginTransaction();
 
         jornada.setData(date);
-        jornada.setNumJornada(Integer.valueOf(txtNum.getText().toString()));
 
         realm.commitTransaction();
     }

@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sanchez.lopez.alberto.campionatlliga.dialogs.DatePickerFragment;
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
@@ -78,6 +81,8 @@ public class AnadirPartido extends AppCompatActivity {
     private ArrayList<TextView> lblGolsReservaFora;
     private ArrayList<Button> btnPlusReservaFora;
 
+    private boolean equipsIguals;
+
     Context context;
 
     @Override
@@ -135,7 +140,7 @@ public class AnadirPartido extends AppCompatActivity {
                     lblNomReservaFora.get(i).setText(nomReservaFora);
 
                 }
-
+                comprobarEquipsDiferents(spnCasa, spnFora);
             }
 
             @Override
@@ -161,6 +166,7 @@ public class AnadirPartido extends AppCompatActivity {
                     String nomReservaCasa = equipCasa.getReservas().get(i).getNom();
                     lblNomReservaCasa.get(i).setText(nomReservaCasa);
                 }
+                comprobarEquipsDiferents(spnCasa, spnFora);
             }
 
             @Override
@@ -170,6 +176,23 @@ public class AnadirPartido extends AppCompatActivity {
         });
 
         loadData();
+        comprobarEquipsDiferents(spnCasa, spnFora);
+    }
+
+    private void comprobarEquipsDiferents(Spinner spnA, Spinner spnB) {
+        String nomEquipCasa = spnA.getSelectedItem().toString();
+        String nomEquipFora = spnB.getSelectedItem().toString();
+
+        if (nomEquipCasa == nomEquipFora) {
+            spnA.setBackgroundColor(Color.RED);
+            spnB.setBackgroundColor(Color.RED);
+            equipsIguals = true;
+        }
+        else {
+            spnA.setBackgroundColor(Color.TRANSPARENT);
+            spnB.setBackgroundColor(Color.TRANSPARENT);
+            equipsIguals = false;
+        }
     }
 
     private void loadData() {
@@ -264,7 +287,12 @@ public class AnadirPartido extends AppCompatActivity {
 
         if (id == R.id.action_save) {
             if (date != null) {
-                guardarPartit(true);
+                if (equipsIguals) {
+                    Snackbar.make(findViewById(android.R.id.content),"Has de seleccionar equips diferents", Snackbar.LENGTH_SHORT).show();
+                    //Toast.makeText(this,"Has de seleccionar equips diferents.",Toast.LENGTH_SHORT).show();
+                }else {
+                    guardarPartit(true);
+                }
             }else {
                 dialogData.show();
             }
@@ -460,6 +488,8 @@ public class AnadirPartido extends AppCompatActivity {
             btnPlusReservaCasa.get(i).setOnClickListener(new PlusClickListener(lblGolsReservaCasa.get(i),lblGolsCasa));
             btnPlusReservaFora.get(i).setOnClickListener(new PlusClickListener(lblGolsReservaFora.get(i),lblGolsFora));
         }
+
+
     }
 
     class PlusClickListener implements View.OnClickListener {
