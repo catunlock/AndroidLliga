@@ -34,13 +34,14 @@
         android:layout_height="wrap_content"
         android:text="000"
         android:id="@+id/lblGols"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="5dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView6"
-        android:src="@mipmap/ic_pelota"
+        android:src="@drawable/ball"
         android:layout_gravity="center_vertical" />
 
 </LinearLayout>

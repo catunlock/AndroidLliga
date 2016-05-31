@@ -1,6 +1,5 @@
 package com.sanchez.lopez.alberto.campionatlliga.model;
 
-import com.orm.SugarRecord;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

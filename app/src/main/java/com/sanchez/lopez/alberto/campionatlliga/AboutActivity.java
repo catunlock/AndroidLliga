@@ -20,7 +20,7 @@ public class AboutActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mp = MediaPlayer.create(this, R.raw.chute);
+        mp = MediaPlayer.create(this, R.raw.silbato);
     }
 
     public void playSound(View view) {

@@ -86,7 +86,7 @@
                         android:layout_width="38dp"
                         android:layout_height="35dp"
                         android:id="@+id/imageView2"
-                        android:src="@mipmap/ic_positivo" />
+                        android:src="@drawable/check_verde" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/imageView3"
-                        android:src="@mipmap/ic_negativo" />
+                        android:src="@drawable/cross_rojo" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/imageView4"
-                        android:src="@mipmap/ic_empate" />
+                        android:src="@drawable/minus_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"

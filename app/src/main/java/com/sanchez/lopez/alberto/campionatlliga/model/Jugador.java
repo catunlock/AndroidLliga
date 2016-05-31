@@ -1,6 +1,5 @@
 package com.sanchez.lopez.alberto.campionatlliga.model;
 
-import com.orm.SugarRecord;
 
 import io.realm.RealmObject;
 import io.realm.annotations.Required;

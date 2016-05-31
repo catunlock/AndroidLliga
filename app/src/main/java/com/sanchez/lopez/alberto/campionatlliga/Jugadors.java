@@ -2,6 +2,7 @@ package com.sanchez.lopez.alberto.campionatlliga;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -116,6 +117,9 @@ public class Jugadors extends AppCompatActivity {
             lblNomEquip.setText(j.getEquip().getNom());
             lblGols.setText(String.valueOf(j.getGols()));
 
+            if (j.getEquip().isEliminat()) {
+                lblNomEquip.setTextColor(Color.RED);
+            }
 
             return rowView;
         }
