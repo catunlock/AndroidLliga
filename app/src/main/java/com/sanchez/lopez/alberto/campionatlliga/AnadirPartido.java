@@ -102,7 +102,7 @@ public class AnadirPartido extends AppCompatActivity {
         realmConfig = new RealmConfiguration.Builder(this).build();
         realm = Realm.getInstance(realmConfig);
 
-        equips = realm.where(Equip.class).equalTo("eliminat",false).findAll();;
+        equips = realm.where(Equip.class).equalTo("eliminat",false).findAll();
         mapEquips = new HashMap<>(equips.size());
 
         ArrayList<String> nomEquips = new ArrayList<>(equips.size());
@@ -631,33 +631,16 @@ public class AnadirPartido extends AppCompatActivity {
         p.setGolsB(Integer.valueOf(lblGolsFora.getText().toString()));
 
         for (int i = 0; i < 5; ++i) {
-            p.getEquipA().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString()));
-            p.getEquipB().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString()));
-
             p.getGolsTitularsA().get(i).value = Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString());
             p.getGolsTitularsB().get(i).value = Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString());
         }
 
         for (int i = 0; i < 7; ++i) {
-            p.getEquipA().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString()));
-            p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
-
             p.getGolsReservasA().get(i).value = Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString());
             p.getGolsReservasB().get(i).value = Integer.valueOf(lblGolsReservaFora.get(i).getText().toString());
         }
 
-        if (p.getGolsA() == p.getGolsB()) {
-            p.getEquipA().empata();
-            p.getEquipB().empata();
-        }else {
-            if (p.getGolsA() > p.getGolsB()) {
-                p.getEquipA().guanya();
-                p.getEquipB().perd();
-            }else {
-                p.getEquipB().guanya();
-                p.getEquipA().perd();
-            }
-        }
+        p.ferEfectiuResultat();
 
         j.getPartidos().add(p);
         realm.commitTransaction();

@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
 import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
@@ -97,16 +98,27 @@ public class Jornadas extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MySimpleArrayAdapter adapter = (MySimpleArrayAdapter) listJornadas.getAdapter();
+        adapter.reload();
+    }
+
     private class MySimpleArrayAdapter extends ArrayAdapter<Jornada> {
         private final Context context;
-        private final List<Jornada> jornadas;
+        private List<Jornada> jornadas;
 
         public MySimpleArrayAdapter(Context context) {
             super(context, -1);
+            reload();
+            this.context = context;
+        }
+
+        public void reload() {
+            this.clear();
             jornadas = realm.where(Jornada.class).findAll();
             this.addAll(jornadas);
-            this.context = context;
-
         }
 
         private int getResourceId(String pVariableName, String pResourcename, String pPackageName)

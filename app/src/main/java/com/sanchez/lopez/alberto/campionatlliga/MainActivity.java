@@ -219,17 +219,17 @@ public class MainActivity extends AppCompatActivity {
         partidosB.add(new Partido(date2, equips.get(8), equips.get(9), 2, 1));
         partidosB.add(new Partido(date2, equips.get(9), equips.get(6), 2, 1));
 
+        equips.get(8).guanya();
         equips.get(6).guanya();
         equips.get(7).guanya();
         equips.get(8).guanya();
         equips.get(9).guanya();
-        equips.get(6).guanya();
 
-        equips.get(8).perd();
         equips.get(6).perd();
         equips.get(7).perd();
         equips.get(8).perd();
         equips.get(9).perd();
+        equips.get(6).perd();
 
         for (Partido p : partidosB) {
             Entero golsTA = new Entero();

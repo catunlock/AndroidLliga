@@ -55,7 +55,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:id="@+id/imgForaEscut"
+                    android:id="@+id/imgCasaEscut"
                     android:src="@mipmap/ic_shield"
                     android:layout_alignTop="@+id/imgCasaEscut"
                     android:layout_toStartOf="@+id/linearLayout2" />
@@ -63,7 +63,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:id="@+id/imgCasaEscut"
+                    android:id="@+id/imgForaEscut"
                     android:contentDescription="Escut"
                     android:layout_gravity="left"
                     android:src="@mipmap/ic_shield"

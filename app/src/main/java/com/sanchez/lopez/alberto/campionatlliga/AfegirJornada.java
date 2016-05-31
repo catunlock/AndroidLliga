@@ -50,7 +50,13 @@ public class AfegirJornada extends AppCompatActivity {
     }
 
     private void findMaxNumJornada() {
-        maxNumJornada = realm.where(Jornada.class).max("numJornada").intValue();
+        Number numberJornada = realm.where(Jornada.class).max("numJornada");
+        if (numberJornada == null) {
+            maxNumJornada = 0;
+        }else {
+            maxNumJornada = numberJornada.intValue();
+        }
+
         lblNumJornada.setText(String.valueOf(maxNumJornada+1));
     }
 

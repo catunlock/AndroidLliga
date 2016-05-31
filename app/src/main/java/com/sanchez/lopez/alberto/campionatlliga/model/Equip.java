@@ -87,6 +87,22 @@ public class Equip extends RealmObject {
         punts += 3;
     }
 
+    public void desferGuany() {
+        guanyats -= 1;
+        punts -= 3;
+    }
+
+    public void desferPerdut() {
+        perduts -= 1;
+    }
+
+    public void desferEmpat() {
+        empatats -= 1;
+        punts -= 1;
+    }
+
+
+
     RealmList<Jugador> titulars;
     RealmList<Jugador> reservas;
 
@@ -141,27 +157,8 @@ public class Equip extends RealmObject {
         return reservas;
     }
 
-    public int getSizeTitulars() {
-        return titulars.size();
-    }
-
-    public int getSizeReservas() {
-        return reservas.size();
-    }
-
-    public void setTitular(int i, Jugador j) {
-        titulars.set(i, j);
-    }
-
-    public void setReserva(int i, Jugador r) {
-        reservas.set(i,r);
-    }
-
     public int getPunts() {
         return punts;
     }
 
-    public void setPunts(int punts) {
-        this.punts = punts;
-    }
 }

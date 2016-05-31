@@ -67,25 +67,56 @@ public class Partido extends RealmObject{
         return dataCreacio;
     }
 
+    public void ferEfectiuResultat() {
+        if (golsA == golsB) {
+            equipA.empata();
+            equipB.empata();
+        } else {
+            if (golsA > golsB) {
+                equipA.guanya();
+                equipB.perd();
+            } else {
+                equipB.guanya();
+                equipA.perd();
+            }
+        }
+
+        for (int i = 0; i < 5; ++i) {
+            equipA.getTitulars().get(i).addGols(golsTitularsA.get(i).value);
+            equipB.getTitulars().get(i).addGols(golsTitularsB.get(i).value);
+        }
+
+        for (int i = 0; i < 7; ++i) {
+            equipA.getReservas().get(i).addGols(golsReservasA.get(i).value);
+            equipB.getReservas().get(i).addGols(golsReservasB.get(i).value);
+        }
+
+    }
+
     public void desferResultat() {
         if (golsA == golsB) {
-            equipA.setEmpatats(equipA.getEmpatats() - 1);
-            equipB.setEmpatats(equipB.getEmpatats() - 1);
-
-            equipA.setPunts(equipA.getPunts() - 1);
-            equipB.setPunts(equipB.getPunts() - 1);
+            equipA.desferEmpat();
+            equipB.desferEmpat();
         }
         else {
             if (golsA > golsB) {
-                equipA.setGuanyats(equipA.getGuanyats() -1);
-                equipB.setPerduts(equipB.getPerduts() -1 );
-                equipA.setPunts(equipA.getPunts() - 3);
+                equipA.desferGuany();
+                equipB.desferPerdut();
             }
             else {
-                equipB.setGuanyats(equipB.getGuanyats() -1);
-                equipA.setPerduts(equipA.getPerduts() -1 );
-                equipB.setPunts(equipB.getPunts() - 3);
+                equipB.desferGuany();
+                equipA.desferPerdut();
             }
+        }
+
+        for (int i = 0; i < 5; ++i) {
+            equipA.getTitulars().get(i).subsGols(golsTitularsA.get(i).value);
+            equipB.getTitulars().get(i).subsGols(golsTitularsB.get(i).value);
+        }
+
+        for (int i = 0; i < 7; ++i) {
+            equipA.getReservas().get(i).subsGols(golsReservasA.get(i).value);
+            equipB.getReservas().get(i).subsGols(golsReservasB.get(i).value);
         }
     }
 

@@ -64,6 +64,8 @@ public class JornadaActivity extends AppCompatActivity {
     private Date date;
 
     private Context context;
+    private Toast toast_jornadaCompleta;
+    private Toast toast_noHiHanEquips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,21 +80,23 @@ public class JornadaActivity extends AppCompatActivity {
         realmConfig = new RealmConfiguration.Builder(this).build();
         realm = Realm.getInstance(realmConfig);
 
+        toast_jornadaCompleta = Toast.makeText(context, "No pots afegir mes partits a aquesta jornada.", Toast.LENGTH_SHORT);
+        toast_noHiHanEquips = Toast.makeText(context, "No hi han equips a la lliga.", Toast.LENGTH_SHORT);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (jornada.getPartidos().size() < 5) {
+                int nEquips = realm.where(Equip.class).equalTo("eliminat",false).findAll().size();;
+                if (nEquips <= 0) {
+                    toast_noHiHanEquips.show();
+                }else if (jornada.getPartidos().size() >= 5) {
+                    toast_jornadaCompleta.show();
+                }
+                else {
                     Intent intent = new Intent(context, AnadirPartido.class);
                     intent.putExtra("numJornada", jornada.getNumJornada());
                     startActivity(intent);
-                }else {
-                    Context context = getApplicationContext();
-                    CharSequence text = "No pots afegir mes partits a aquesta jornada.";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
                 }
             }
         });
@@ -200,8 +204,10 @@ public class JornadaActivity extends AppCompatActivity {
                             RealmList<Partido> partidos = result.get(0).getPartidos();
                             int sizePartidos = partidos.size();
                             for (int i = 0; i < sizePartidos; ++i) {
-                                partidos.get(i).desferResultat();
-                                RealmResults<Partido> r2 = realm.where(Partido.class).equalTo("dataCreacio",partidos.get(i).getDataCreacio()).findAll();
+                                Partido pDel = partidos.first();
+
+                                pDel.desferResultat();
+                                RealmResults<Partido> r2 = realm.where(Partido.class).equalTo("dataCreacio",pDel.getDataCreacio()).findAll();
                                 r2.deleteAllFromRealm();
                             }
 
@@ -237,16 +243,28 @@ public class JornadaActivity extends AppCompatActivity {
         realm.commitTransaction();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MySimpleArrayAdapter adapter = (MySimpleArrayAdapter) listPartit.getAdapter();
+        adapter.reload();
+    }
+
     private class MySimpleArrayAdapter extends ArrayAdapter<Partido> {
         private final Context context;
-        private final List<Partido> partidos;
+        private List<Partido> partidos;
 
         public MySimpleArrayAdapter(Context context) {
             super(context, -1);
+            reload();
+            this.context = context;
+        }
+
+        public void reload() {
+            clear();
             partidos = jornada.getPartidos();
             lblNumPartits.setText(String.valueOf(partidos.size()));
             this.addAll(partidos);
-            this.context = context;
         }
 
         private int getResourceId(String pVariableName, String pResourcename, String pPackageName)

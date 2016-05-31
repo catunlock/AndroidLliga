@@ -111,7 +111,7 @@ public class Jugadors extends AppCompatActivity {
 
             Jugador j = jugadors.get(position);
 
-            lblPosition.setText(String.valueOf(position));
+            lblPosition.setText(String.valueOf(position+1));
             lblNomJugador.setText(j.getNom());
             lblNomEquip.setText(j.getEquip().getNom());
             lblGols.setText(String.valueOf(j.getGols()));

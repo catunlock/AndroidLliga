@@ -45,6 +45,8 @@ public class Jugador extends RealmObject {
 
     public void addGols(int gols) { this.gols += gols; }
 
+    public void subsGols(int gols) { this.gols -= gols; }
+
     public String getNom() {
         return nom;
     }
