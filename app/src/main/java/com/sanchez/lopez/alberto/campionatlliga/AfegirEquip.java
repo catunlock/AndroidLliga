@@ -3,7 +3,9 @@ package com.sanchez.lopez.alberto.campionatlliga;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,10 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jugador;
-import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipViewer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class AfegirEquip extends AppCompatActivity {
     ArrayList<EditText> txtNomReservas = new ArrayList<>();
 
     Equip equip;
+    Toast toastEquipExisteix;
 
     private RealmConfiguration realmConfig;
     private Realm realm;
@@ -48,6 +51,7 @@ public class AfegirEquip extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        toastEquipExisteix = Toast.makeText(this,"Ja existeix un equip amb aquest nom.", Toast.LENGTH_LONG);
         context = this;
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
@@ -157,9 +161,15 @@ public class AfegirEquip extends AppCompatActivity {
         }
 
         if (id == R.id.action_save) {
-            realm.beginTransaction();
 
             String nomEquip = txtNomEquip.getText().toString();
+            if (comprobarExisteixEquip(nomEquip)) {
+                toastEquipExisteix.show();
+                txtNomEquip.setTextColor(Color.RED);
+                return true;
+            }
+
+            realm.beginTransaction();
             String nomCiutat = txtNomCiutat.getText().toString();
             String tagEscut = ibtnEscut.getTag().toString();
             if (equip == null) {
@@ -188,14 +198,24 @@ public class AfegirEquip extends AppCompatActivity {
             realm.copyToRealm(equip);
             realm.commitTransaction();
 
+            /*
             Intent intent = new Intent(this, EquipViewer.class);
             intent.putExtra("nomEquip", equip.getNom());
 
             startActivity(intent);
+            */
+            finish();
 
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean comprobarExisteixEquip(String nomEquip) {
+
+        Equip e = realm.where(Equip.class).equalTo("nom", nomEquip).findFirst();
+
+        return e != null;
     }
 }

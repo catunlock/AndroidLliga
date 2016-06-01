@@ -29,7 +29,6 @@
             android:name=".AfegirEquip"
             android:label="@string/title_activity_afegir_equip"
             android:parentActivityName=".Equips"
-            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AnadirPartido"
